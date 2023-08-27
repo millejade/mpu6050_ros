@@ -8,6 +8,7 @@
 #include <stdint.h>
 #include <sys/ioctl.h>
 #include <linux/i2c-dev.h>
+#include <string.h>
 
 class I2CWrapper
 {
@@ -16,17 +17,16 @@ class I2CWrapper
 
     ~I2CWrapper();
 
-    uint8_t initI2C();
+    bool initI2CSlave();
 
-    uint8_t deinitI2C();
+    bool deinitI2CSlave();
 
-    uint8_t isDataAvailable();
+    bool i2cReadByte(uint8_t register_addr);
 
-    uint8_t readData();
-
-    uint8_t writeData();
+    bool i2cWriteByte(uint8_t register_addr, uint8_t val);
 
   private:
+    in8_t i2c_fd = -1;
 
 }
 
