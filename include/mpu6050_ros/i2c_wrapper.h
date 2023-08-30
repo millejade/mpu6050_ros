@@ -17,17 +17,16 @@ class I2CWrapper
 
     ~I2CWrapper();
 
-    bool initI2CSlave();
+    bool initI2CSlave(std::string i2c_dev_path, uint8_t slave_addr);
 
     bool deinitI2CSlave();
 
-    bool i2cReadByte(uint8_t register_addr);
+    bool i2cReadByte(uint8_t register_addr, int16_t* buf);
 
-    bool i2cWriteByte(uint8_t register_addr, uint8_t val);
+    bool i2cWriteByte(uint8_t register_addr, uint16_t val);
 
   private:
-    in8_t i2c_fd = -1;
-
+    in8_t i2c_fd_;
 }
 
 #endif
